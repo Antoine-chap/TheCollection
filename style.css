@@ -1,0 +1,81 @@
+body, html {
+
+}
+
+header {
+
+}
+
+main {
+width: 100%;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+}
+
+footer {
+
+}
+
+.Card {
+width: 50%;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+flex-wrap: nowrap;
+}
+
+.divInfo {
+
+}
+
+.picture {
+width: 350px;
+height: 350px;
+background-size: contain;
+background-repeat:no-repeat;
+
+}
+
+.classeName {
+
+}
+
+.type {
+
+}
+
+.typeArmor {
+
+}
+
+.generalInformation {
+
+}
+
+.talents {
+
+}
+
+.classeNameP {
+
+}
+
+.typeP {
+
+}
+
+.typeArmorP {
+
+}
+
+.generalInformationP {
+
+}
+
+.talentsP {
+
+}
