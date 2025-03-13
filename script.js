@@ -2,7 +2,7 @@
 const classes = [
     {
         classe: `Guerrier`,
-        type: [`Tank`, `Spécialiste des dégâts physiques de mêlée`],
+        type: [`Tank`, `Dégâts physiques mêlée`],
         typeArmor: `Plaque`,
         picture: `https://blz-contentstack-images.akamaized.net/v3/assets/blt3452e3b114fab0cd/bltf9f62859db695a4d/5ee3e473a7c560086afc3ffd/9WL35DUZNSG01457032148687.jpg`,
         generalInformation: `Les guerriers s'équipent avec précaution pour le combat, et n'hésitent pas à engager le combat à la tête la première
@@ -41,7 +41,7 @@ const classes = [
     },
     {
         classe: `Voleur`,
-        type: [`Assassin`, `Spécialiste des dégâts physiques de mêlée`],
+        type: [`Assassin`, `Dégâts physiques mêlée`],
         typeArmor: `Cuir`,
         picture: `https://blz-contentstack-images.akamaized.net/v3/assets/blt3452e3b114fab0cd/bltceda97b65490029d/5ee3e4a218f34d710497c5c9/65H7H3XK5PFS1457032234098.jpg`,
         generalInformation: `Les voleurs sont des maîtres de la furtivité et de l'assassinat. Ils utilisent des dagues et des poisons pour éliminer
@@ -52,7 +52,7 @@ const classes = [
         classe: `Chaman`,
         type: [`Soigneur`, `Lanceur de sorts`],
         typeArmor: `Mailles`,
-        picture: `https://blz-contentstack-images.akamaized.net/v3/assets/blt3452e3b114fab0cd/blt15fb42851b4eab5e/5ee3e39aa9170407eeb4b76d/1LARAZ7I3M0F1457032234809.jpg`,
+        picture: `https://blz-contentstack-images.akamaized.net/v3/assets/blt3452e3b114fab0cd/blt3001008857efcbd4/5ee7928218f34d710497c759/LPEY9SFJT7PB1457032234088.jpg`,
         generalInformation: `Les chamans communiquent avec les éléments pour soigner et protéger leurs alliés ou pour invoquer des tempêtes
             dévastatrices contre leurs ennemis.`,
         talents: [`Élémentaire`, `Amélioration`, `Restauration`]
@@ -86,7 +86,7 @@ const classes = [
     },
     {
         classe: `Moine`,
-        type: [`Tank`, `Soigneur`, `Spécialiste des dégâts physiques de mêlée`],
+        type: [`Tank`, `Soigneur`, `Dégâts physiques mêlée`],
         typeArmor:` Cuir`,
         picture: `https://blz-contentstack-images.akamaized.net/v3/assets/blt3452e3b114fab0cd/bltab8e835ed1f245ba/5ee793cb3a8621077a04a491/80E3HJ653J1M1457032234443.jpg`,
         generalInformation: `Les moines utilisent leur maîtrise des arts martiaux et des énergies mystiques pour soigner, protéger et attaquer.
@@ -95,7 +95,7 @@ const classes = [
     },
     {
         classe: `Chevalier de la mort`,
-        type: [`Tank`, `Spécialiste des dégâts physiques de mêlée`],
+        type: [`Tank`, `Dégâts physiques mêlée`],
         typeArmor: `Plaque`,
         picture: `https://blz-contentstack-images.akamaized.net/v3/assets/blt3452e3b114fab0cd/blt456a89c041972885/5ee3e3d363a2d9709383078b/XM82LOJR750J1457032234975.jpg`,
         generalInformation: `Les chevaliers de la mort utilisent les pouvoirs des ténèbres pour infliger des dégâts et protéger leurs alliés.
@@ -104,7 +104,7 @@ const classes = [
     },
     {
         classe: `Chasseur de démons`,
-        type: [`Assassin`, `Spécialiste des dégâts physiques de mêlée`],
+        type: [`Assassin`, `Dégâts physiques mêlée`],
         typeArmor: `Cuir`,
         picture: `https://blz-contentstack-images.akamaized.net/v3/assets/blt3452e3b114fab0cd/bltecb94c367119455a/5ee79631d217327180733e77/4YSZQMC616V61457032235002.jpg`,
         generalInformation: `Les chasseurs de démons sont des combattants agiles et mortels, spécialisés dans l'élimination des forces démoniaques.
@@ -134,7 +134,38 @@ const classes = [
         talents: [`Front-end`, `Back-end`, `Full-stack`]
     }
 ]
+const header = document.querySelector(`header`);
+
+const title = document.createElement(`h1`);
+title.id = `headerH1`;
+title.textContent = `Les classe de World Of Warcraft`;
+
+const paragraphe = document.createElement(`p`);
+paragraphe.id = `headerP`;
+paragraphe.textContent = `Chevalier en armure de plaques étincelante ou lanceur de sorts en robe aux couleurs bigarrées ? Le choix est vaste dans World of Warcraft ! Chaque classe pose un défi différent et répond à des mécaniques de jeu spécifiques. Quelle est votre vocation ?`;
+
+header.appendChild(title);
+header.appendChild(paragraphe);
+
 const main = document.querySelector(`main`);
+
+const controlDivMain = document.createElement('section');
+main.appendChild(controlDivMain);
+
+controlDivMain.classList.add(`controlDivMain`);
+
+const btnSwitch = document.createElement(`div`);
+controlDivMain.appendChild(btnSwitch);
+btnSwitch.textContent = `Tri`;
+
+btnSwitch.classList.add(`btnSwitch`);
+
+const btnRestor = document.createElement(`div`);
+controlDivMain.appendChild(btnRestor);
+btnRestor.textContent = `Reset`;
+
+
+btnRestor.classList.add(`btnRestor`);
 
 classes.forEach(classe => {
     const Card = document.createElement('section');// Cree un enfant a main qui s'appel section (Card) (bleu) czrd complete
@@ -184,6 +215,8 @@ generalInformationP.innerText = classe.generalInformation;
 
 picture.style.backgroundImage = `url(${classe.picture})`;//affichage img
 
+Card.id = classe.classe;
+
 classe.type.forEach(arrType => {//boucle tableau type +create element p + affichage txt + creation de classe
     const typeP = document.createElement(`p`);
     type.appendChild(typeP);
@@ -196,5 +229,33 @@ classe.talents.forEach(arrTalents => {
     talents.appendChild(talentsP);
     talentsP.innerText = arrTalents
     talentsP.classList.add(`talentsP`);
+
 })
+
+const controlDiv = document.createElement('div');
+Card.appendChild(controlDiv);
+
+controlDiv.classList.add(`btnSwap`);
+
+const btnDelete = document.createElement(`div`);
+controlDiv.appendChild(btnDelete);
+
+btnDelete.classList.add(`btnDelete`);
+
+
+
+
+
+
+
+
+
 })
+
+const footer = document.querySelector(`footer`);
+
+const source = document.createElement(`p`);
+source.id = `footerP`;
+source.textContent = `Source : Darkalagan , actuellement guerrier level 45 sur World Of Warcraft Classic Hardcore`;
+
+footer.appendChild(source);
