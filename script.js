@@ -1,4 +1,3 @@
-
 const classes = [
     {
         classe: `Guerrier`,
@@ -134,11 +133,12 @@ const classes = [
         talents: [`Front-end`, `Back-end`, `Full-stack`]
     }
 ]
+
 const header = document.querySelector(`header`);
 
 const title = document.createElement(`h1`);
 title.id = `headerH1`;
-title.textContent = `Les classe de World Of Warcraft`;
+title.textContent = `Les classes de World Of Warcraft`;
 
 const paragraphe = document.createElement(`p`);
 paragraphe.id = `headerP`;
@@ -155,8 +155,8 @@ main.appendChild(controlDivMain);
 controlDivMain.classList.add(`controlDivMain`);
 
 const btnSwitch = document.createElement(`div`);
-controlDivMain.appendChild(btnSwitch);
-btnSwitch.textContent = `Tri`;
+// controlDivMain.appendChild(btnSwitch);
+// btnSwitch.textContent = `Tri`;
 
 btnSwitch.classList.add(`btnSwitch`);
 
@@ -164,98 +164,131 @@ const btnRestor = document.createElement(`div`);
 controlDivMain.appendChild(btnRestor);
 btnRestor.textContent = `Reset`;
 
-
 btnRestor.classList.add(`btnRestor`);
 
-classes.forEach(classe => {
-    const Card = document.createElement('section');// Cree un enfant a main qui s'appel section (Card) (bleu) czrd complete
-    main.appendChild(Card);
 
-    const picture = document.createElement(`div`);
-    Card.appendChild(picture);
-    const divInfo = document.createElement(`div`);// cree un enfant a section qui s'appel div (divInfo) (vert) picture et info
-    Card.appendChild(divInfo);
-
-    const classeName = document.createElement(`div`);// cree un enfant a div(divInfo) qui s'appel div(classeName)rouge conteneur pour p
-    divInfo.appendChild(classeName);
-    const type = document.createElement(`div`);
-    divInfo.appendChild(type);
-    const typeArmor = document.createElement(`div`);
-    divInfo.appendChild(typeArmor);
-    const generalInformation = document.createElement(`div`);
-    divInfo.appendChild(generalInformation);
-    const talents = document.createElement(`div`);
-    divInfo.appendChild(talents);
-
-    const classeNameP = document.createElement(`p`);// cree un enfant a div (classeName) qui s'appel p orange contenu
-    classeName.appendChild(classeNameP);
-    const typeArmorP = document.createElement(`p`);
-    typeArmor.appendChild(typeArmorP);
-    const generalInformationP = document.createElement(`p`);
-    generalInformation.appendChild(generalInformationP);
-
-Card.classList.add(`Card`);// ajoute la class Card a Card
-
-divInfo.classList.add(`divInfo`);
-picture.classList.add(`picture`);
-
-classeName.classList.add(`classeName`);
-type.classList.add(`type`);
-typeArmor.classList.add(`typeArmor`);
-generalInformation.classList.add(`generalInformation`);
-talents.classList.add(`talents`);
-
-classeNameP.classList.add(`classeNameP`);
-typeArmorP.classList.add(`typeArmorP`);
-generalInformationP.classList.add(`generalInformationP`);
-
-classeNameP.innerText = classe.classe;//affichage de texte
-typeArmorP.innerText = classe.typeArmor;
-generalInformationP.innerText = classe.generalInformation;
-
-picture.style.backgroundImage = `url(${classe.picture})`;//affichage img
-
-Card.id = classe.classe;
-
-classe.type.forEach(arrType => {//boucle tableau type +create element p + affichage txt + creation de classe
-    const typeP = document.createElement(`p`);
-    type.appendChild(typeP);
-    typeP.innerText = arrType
-    typeP.classList.add(`typeP`);
-})
-
-classe.talents.forEach(arrTalents => {
-    const talentsP = document.createElement(`p`);
-    talents.appendChild(talentsP);
-    talentsP.innerText = arrTalents
-    talentsP.classList.add(`talentsP`);
-
-})
-
-const controlDiv = document.createElement('div');
-Card.appendChild(controlDiv);
-
-controlDiv.classList.add(`btnSwap`);
-
-const btnDelete = document.createElement(`div`);
-controlDiv.appendChild(btnDelete);
-
-btnDelete.classList.add(`btnDelete`);
+const select = document.createElement('select');// Créer une liste déroulante pour le tri
+controlDivMain.appendChild(select);
+select.id = 'armorTypeSelect';
+select.innerHTML = `
+    <option value="all">Tous</option>
+    <option value="Tissu">Tissu</option>
+    <option value="Cuir">Cuir</option>
+    <option value="Mailles">Mailles</option>
+    <option value="Plaque">Plaque</option>
+    <option value="Casual">Casual</option>
+`;
+controlDivMain.appendChild(select);
 
 
+function displayCards(classesArray) {// Fonction pour créer et afficher les cartes
+    main.innerHTML = ''; // Efface les cartes existantes
+    main.appendChild(controlDivMain); // Réajoute les contrôles
+
+    classesArray.forEach(classe => {
+        const Card = document.createElement('section');
+        main.appendChild(Card);
+
+        const picture = document.createElement(`div`);
+        Card.appendChild(picture);
+        const divInfo = document.createElement(`div`);
+        Card.appendChild(divInfo);
+
+        const classeName = document.createElement(`div`);
+        divInfo.appendChild(classeName);
+        const type = document.createElement(`div`);
+        divInfo.appendChild(type);
+        const typeArmor = document.createElement(`div`);
+        divInfo.appendChild(typeArmor);
+        const generalInformation = document.createElement(`div`);
+        divInfo.appendChild(generalInformation);
+        const talents = document.createElement(`div`);
+        divInfo.appendChild(talents);
+
+        const classeNameP = document.createElement(`p`);
+        classeName.appendChild(classeNameP);
+        const typeArmorP = document.createElement(`p`);
+        typeArmor.appendChild(typeArmorP);
+        const generalInformationP = document.createElement(`p`);
+        generalInformation.appendChild(generalInformationP);
+
+        Card.classList.add(`Card`);
+
+        divInfo.classList.add(`divInfo`);
+        picture.classList.add(`picture`);
+
+        classeName.classList.add(`classeName`);
+        type.classList.add(`type`);
+        typeArmor.classList.add(`typeArmor`);
+        generalInformation.classList.add(`generalInformation`);
+        talents.classList.add(`talents`);
+
+        classeNameP.classList.add(`classeNameP`);
+        typeArmorP.classList.add(`typeArmorP`);
+        generalInformationP.classList.add(`generalInformationP`);
+
+        classeNameP.innerText = classe.classe;
+        typeArmorP.innerText = classe.typeArmor;
+        generalInformationP.innerText = classe.generalInformation;
+
+        picture.style.backgroundImage = `url(${classe.picture})`;
+
+        Card.id = classe.classe;
+
+        classe.type.forEach(arrType => {
+            const typeP = document.createElement(`p`);
+            type.appendChild(typeP);
+            typeP.innerText = arrType;
+            typeP.classList.add(`typeP`);
+        });
+
+        classe.talents.forEach(arrTalents => {
+            const talentsP = document.createElement(`p`);
+            talents.appendChild(talentsP);
+            talentsP.innerText = arrTalents;
+            talentsP.classList.add(`talentsP`);
+        });
+
+        const controlDiv = document.createElement('div');
+        Card.appendChild(controlDiv);
+
+        controlDiv.classList.add(`btnSwap`);
+
+        const btnDelete = document.createElement(`div`);
+        controlDiv.appendChild(btnDelete);
+
+        btnDelete.classList.add(`btnDelete`);
+        btnDelete.textContent = 'Supprimer';
+
+       
+        btnDelete.addEventListener('click', () => {  // Ajout de l'événement de suppression
+            console.log(Card);
+            Card.remove();
+        });
+    });
+}
 
 
+displayCards(classes);// Affichage initial des cartes
 
 
+select.addEventListener('change', () => {// Ajout de l'événement de tri
+    const selectedArmorType = select.value;
+    const filteredClasses = classes.filter(classe => selectedArmorType === 'all' || classe.typeArmor === selectedArmorType);
+    displayCards(filteredClasses);
+});
 
 
-
-})
+btnRestor.addEventListener('click', () => {// Ajout de l'événement de réinitialisation
+    displayCards(classes);
+    select.value = 'all'; // Réinitialise la sélection
+    
+});
 
 const footer = document.querySelector(`footer`);
 
 const source = document.createElement(`p`);
 source.id = `footerP`;
-source.textContent = `Source : Darkalagan , actuellement guerrier level 45 sur World Of Warcraft Classic Hardcore`;
+source.textContent = `Source : Darkalagan, actuellement guerrier level 45 sur World Of Warcraft Classic Hardcore`;
 
 footer.appendChild(source);
